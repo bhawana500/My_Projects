@@ -44,34 +44,39 @@ if choice==1:
     while len(place)<10:
         try:
             if turn==1:
-                print("[X's Chance]")
+                print("[❌'s Chance]")
                 value=int(input("Enter the number at which place you're placing:"))
                 if value not in place and value>=0 and value<9:
                     place.append(value)
                     xState[value]="X"
+                    turn=1-turn
+                elif value in place and value>=0 and value<9:
+                    print("\nThe Place has Already been Taken!!\n")
                 else:
-                    print("The Place has Already been Taken!!")
+                    print("\nPlease enter the Valid Number\n")
             elif turn==0:
-                print("[O's Chance]")
+                print("[⭕'s Chance]")
                 value=int(input("Enter a number at which place you're placing:"))
                 if value not in place and value>=0 and value<9:
                     place.append(value)
                     zState[value]="O"
+                    turn=1-turn
+                elif value in place and value>=0 and value<9:
+                    print("\nThe Place has Already been Taken!!\n")
                 else:
-                    print("The Place has Already been Taken!!")
-            turn=1-turn
+                    print("\nPlease enter the Valid Number\n")
         except IndexError:
-            print("Please Enter Valid Place Number(0-8)!!")
+            print("\nPlease Enter Valid Place Number(0-8)!!\n")
         print(game())
         print()
         if win(xState,zState)=="X":
-            print("Congrats!!, X WINS")
+            print("\nCongrats!!, X WINS")
             break
         if win(xState,zState)=="O":
-            print("Congrats!!, O WINS")
+            print("\nCongrats!!, O WINS")
             break
         if len(place)==9:
-            print("MATCH DRAW")
+            print("\nMATCH DRAW")
             break
 else:
     print("You Exit the Game")
