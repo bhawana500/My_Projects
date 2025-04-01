@@ -22,9 +22,10 @@ for i in email:
 temp=temp[:-(len(extension))]
 temp=''.join(temp)
 username=temp[:place_a]
-if count_a!=1 or count_a==0 or len(temp[place_a+1:])==0 or len(username)==0 or username[0]=='.' or username[-1]=='.' or temp=='':
+sld=temp[place_a+1:]
+if count_a!=1 or count_a==0 or len(sld)==0 or len(username)==0 or username[0]=='.' or username[-1]=='.' or temp=='' or sld[0]=='_' or sld[-1]=='_':
     invalid+=1
-if '..' in email:
+if '..' in email or '__' in email:
     invalid+=1
 if len(email)<6 or len(email)>320:
     invalid+=1
@@ -34,7 +35,7 @@ invalid_username_characters = [" ", ",", ":", ";", "!", "#", "$", "%", "^", "&"
 for i in username:
     if i in invalid_username_characters:
         invalid+=1
-invalid_domain_characters = [" ", ",", ":", ";", "!", "@", "(", ")", "[", "]", "{", "}", "\"", "'", "<", ">", "\\", "/", "|", "~"]
+invalid_domain_characters = [" ", ",", ":", ";", "!", "@", "(", ")", "[", "]", "{", "}", "\"", "'", "<", ">", "\\", "/", "|", "~",'_']
 for i in email[place_a+1:]:
     if i in invalid_domain_characters:
         invalid+=1
